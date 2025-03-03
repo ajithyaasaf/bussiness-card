@@ -29,9 +29,8 @@
         background: var(--light);
         display: grid;
         place-items: center;
+        min-height: 100vh;
         line-height: 1.6;
-        min-height: 100dvh; /* Use dynamic viewport height for mobile */
-        padding: 1rem 0; /* Add safe spacing around edges */
       }
 
       .card-container {
@@ -45,6 +44,7 @@
         overflow: hidden;
         box-shadow: 0 12px 40px rgba(8, 116, 204, 0.15);
         position: relative;
+        min-height: 100vh; /* Ensure card takes full viewport height */
       }
 
       /* Hero Section */
@@ -173,6 +173,10 @@
         gap: 1rem;
       }
 
+      .services-grid a {
+        text-decoration: none; /* Remove underline from service links */
+      }
+
       .service {
         background: white;
         padding: 1.25rem;
@@ -266,6 +270,9 @@
       }
 
       @media (max-width: 480px) {
+        .card-container {
+          width: 100%; /* Full width on mobile */
+        }
         .business-card {
           border-radius: 16px;
         }
@@ -283,119 +290,6 @@
         }
         .services {
           padding: 0 1.5rem;
-        }
-      }
-      /* new */
-      .card-container {
-        width: min(420px, 100% - 2rem); /* Better mobile handling */
-        margin: auto; /* Center card properly */
-      }
-
-      .business-card {
-        margin: 0 auto; /* Ensure centering */
-        transform: scale(0.98); /* Small scaling for very small devices */
-        transition: transform 0.3s ease;
-      }
-
-      @media (max-width: 480px) {
-        .business-card {
-          transform: scale(1); /* Reset scaling for proper mobile layout */
-          border-radius: 12px;
-        }
-
-        .hero-section {
-          padding: 1.5rem 1rem 3rem; /* Adjust padding for small screens */
-        }
-
-        .profile-img {
-          width: 100px;
-          height: 100px;
-          transform: translateY(30px);
-          margin-left: auto; /* Center image on mobile */
-          margin-right: auto;
-          left: 0;
-          right: 0;
-        }
-
-        .profile-info {
-          margin-left: 0;
-          text-align: center;
-          width: 100%;
-        }
-
-        .section-title {
-          font-size: 1.1rem;
-        }
-
-        .services-grid {
-          grid-template-columns: 1fr; /* Stack services on mobile */
-          gap: 0.75rem;
-        }
-
-        .contact-section {
-          padding: 1.5rem;
-        }
-      }
-
-      @media (max-width: 375px) {
-        :root {
-          font-size: 14px; /* Adjust root font size for small devices */
-        }
-
-        .hero-tagline {
-          font-size: 1.05rem;
-        }
-
-        .profile-info h1 {
-          font-size: 1.75rem;
-        }
-
-        .contact-item {
-          font-size: 0.9rem;
-          padding: 0.6rem;
-        }
-      }
-
-      @media (max-width: 320px) {
-        :root {
-          font-size: 13px; /* Fine-tune for very small devices */
-        }
-
-        .profile-img {
-          width: 85px;
-          height: 85px;
-        }
-
-        .logo-container {
-          padding: 8px 15px;
-          margin-left: auto;
-          margin-right: auto;
-          display: block;
-          width: fit-content;
-        }
-
-        .logo {
-          width: 95px;
-        }
-      }
-
-      /* Add these new media queries for better range coverage */
-      @media (max-height: 700px) and (orientation: portrait) {
-        .card-container {
-          transform: scale(0.9); /* Better fit for short screens */
-        }
-      }
-
-      @media (max-height: 600px) and (orientation: portrait) {
-        .card-container {
-          transform: scale(0.85);
-        }
-      }
-
-      /* Ensure proper scaling in landscape mode */
-      @media (orientation: landscape) {
-        body {
-          padding: 2rem 0;
         }
       }
     </style>
