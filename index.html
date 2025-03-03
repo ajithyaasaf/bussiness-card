@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Godiva Tech - Digital Business Card</title>
+    <title>Godiva Tech - Next-Gen Digital Card</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css"
     />
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
       :root {
         --primary: #0874cc;
         --secondary: #2c3e50;
@@ -16,6 +18,8 @@
         --light: #f8f9ff;
         --dark: #1a1a1a;
         --gradient: linear-gradient(135deg, var(--primary), #065a9c);
+        --service-bg: #e3f2fd;
+        --contact-bg: #e3f2fd;
       }
 
       * {
@@ -30,132 +34,118 @@
         display: grid;
         place-items: center;
         min-height: 100vh;
-        line-height: 1.6;
-      }
-
-      .card-container {
-        width: min(420px, 90%);
         perspective: 1000px;
       }
 
-      .business-card {
-        background: rgba(255, 255, 255, 0.98);
-        border-radius: 0 0 24px 24px; /* Apply border radius only to the bottom corners */
+      .cyber-card {
+        width: min(400px, 95%);
+        background: rgba(255, 255, 255);
+        border-radius: 24px;
+        padding: 2rem;
+        position: relative;
         overflow: hidden;
-        box-shadow: 0 12px 40px rgba(8, 116, 204, 0.15);
-        position: relative;
-        min-height: 100vh; /* Ensure card takes full viewport height */
+        transform-style: preserve-3d;
+        box-shadow: 0 0 50px rgba(8, 116, 204, 0.3);
+        border: 1px solid rgba(128, 128, 128, 0.1);
+        backdrop-filter: blur(10px);
+        min-height: 700px;
       }
 
-      /* Hero Section */
-      .hero-section {
-        background: var(--gradient);
-        padding: 2rem 2rem 4rem;
-        position: relative;
-        margin-bottom: 3rem;
-      }
-
-      .hero-wave {
+      .cyber-glow {
         position: absolute;
-        bottom: -1px;
-        left: 0;
+        width: 200%;
+        height: 200%;
+        background: var(--gradient);
+        opacity: 0.1;
+        filter: blur(80px);
+        animation: glowRotate 12s linear infinite;
+        z-index: -1;
+      }
+
+      .hologram-effect {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: repeating-conic-gradient(
+          rgba(8, 116, 204, 0.1) 0% 25%,
+          transparent 0% 50%
+        );
+        background-size: 20px 20px;
+        transform: translate(-30%, -30%) rotate(45deg);
+        animation: hologram 4s linear infinite;
+        opacity: 0.3;
+        pointer-events: none;
+      }
+
+      .pattern {
+        position: absolute;
+        background: rgba(
+          8,
+          116,
+          204
+        ); /* Increased opacity for more visibility */
         width: 100%;
-        height: 150px;
-        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg"><path d="M0,100 Q125,50 250,100 T500,100 L500,150 L0,150 Z" fill="white" opacity="0.7"/><path d="M0,120 Q125,70 250,120 T500,120 L500,150 L0,150 Z" fill="white"/></svg>');
-        background-size: cover;
+        height: 100px;
+        top: 0;
+        left: 0;
+        clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
       }
 
-      .logo-container {
-        display: inline-block;
-        margin-bottom: 1.5rem;
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 14px;
-        padding: 10px 20px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        transform: perspective(100px) rotateX(0deg) rotate(-1deg);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        transition: transform 0.3s ease;
-      }
-
-      .logo-container:hover {
-        transform: perspective(100px) rotateX(5deg) rotate(0deg);
+      .profile-header {
+        text-align: center;
+        position: relative;
+        margin-bottom: 2rem;
       }
 
       .logo {
-        width: 110px;
-        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
-        display: block;
-      }
-
-      .hero-tagline {
-        text-align: center;
-        color: white;
-        font-size: 1.2rem;
+        width: 150px;
+        filter: drop-shadow(0 0 5px var(--primary));
         margin-bottom: 1.5rem;
-        font-style: italic;
-      }
-
-      .profile-section {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        position: relative;
-        z-index: 2;
       }
 
       .profile-img {
-        width: 130px;
-        height: 130px;
-        border-radius: 18px;
-        border: 3px solid #fff;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 3px solid var(--primary);
+        padding: 3px;
+        background: var(--gradient);
+        margin: 0 auto 1rem;
         object-fit: cover;
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-        transform: translateY(40px) translateX(10px);
-        z-index: 3;
+        transition: transform 0.3s ease;
+      }
+
+      .profile-img:hover {
+        transform: rotate(5deg) scale(1.05);
       }
 
       .profile-info {
-        position: relative;
-        padding: 1.2rem;
-        background: rgba(0, 0, 0, 0.12);
-        border-radius: 14px;
-        backdrop-filter: blur(6px);
-        margin-left: -30px;
-        z-index: 2;
-        color: white;
-      }
-
-      .profile-info h1 {
-        font-size: 2rem;
-        margin-bottom: 0.25rem;
-        font-weight: 700;
-        letter-spacing: -0.5px;
-        position: relative;
-        display: inline-block;
-      }
-
-      .profile-info h1::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 40%;
-        height: 3px;
-        background: white;
-        border-radius: 2px;
-      }
-
-      .profile-info .title {
-        font-size: 0.95rem;
-        color: rgba(255, 255, 255, 0.95);
-        letter-spacing: 0.8px;
-        font-weight: 400;
-      }
-
-      /* Services Section */
-      .services {
-        padding: 0 2rem;
         margin-bottom: 2rem;
+      }
+
+      .profile-name {
+        color: var(--secondary);
+        font-size: 2.2rem;
+        margin-bottom: 0.25rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+      }
+
+      .profile-title {
+        color: var(--accent);
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+      }
+
+      .services {
+        padding: 2rem;
+        margin-bottom: 2rem;
+        background: var(--service-bg);
+        border-radius: 16px;
+        z-index: 2;
+        position: relative;
       }
 
       .section-title {
@@ -174,232 +164,244 @@
       }
 
       .services-grid a {
-        text-decoration: none; /* Remove underline from service links */
+        text-decoration: none;
       }
 
       .service {
         background: white;
         padding: 1.25rem;
         border-radius: 16px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 4px 12px rgba(8, 116, 204, 0.08);
-        border: 1px solid rgba(8, 116, 204, 0.05);
+        border: 1px solid var(--primary);
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        text-align: center;
       }
 
       .service:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 8px 20px rgba(8, 116, 204, 0.15);
+        transform: translateY(-5px);
       }
 
       .service i {
         font-size: 2rem;
         color: var(--primary);
         margin-bottom: 0.75rem;
-        display: block;
       }
 
       .service h3 {
         font-size: 1rem;
         color: var(--secondary);
-        font-weight: 500;
+        text-align: center;
       }
 
-      /* Contact Section */
-      .contact-section {
+      .cyber-contact {
         padding: 2rem;
-        background: var(--light);
-        border-radius: 24px 24px 0 0;
-        margin-top: -2rem;
-      }
-
-      .contact-info {
+        background: var(--contact-bg);
+        border-radius: 16px;
         display: grid;
         gap: 1rem;
-        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      .contact-beam {
+        position: absolute;
+        height: 2px;
+        background: var(--gradient);
+        width: 100%;
+        filter: blur(1px);
+        top: -20px;
       }
 
       .contact-item {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
-        color: var(--secondary);
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        text-decoration: none;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+        text-decoration: none; /* Remove underline */
       }
 
       .contact-item:hover {
-        background: #f0f0f0;
+        border-color: var(--primary);
+        transform: translateX(10px);
+        background: rgba(8, 116, 204, 0.1);
       }
 
-      .contact-item i {
-        color: var(--primary);
-        font-size: 1.2rem;
-        min-width: 30px;
-        text-align: center;
+      .contact-icon {
+        font-size: 1.5rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
-      .social-links {
+      .contact-info {
+        color: var(--secondary);
+        font-size: 0.95rem;
+      }
+
+      .social-matrix {
         display: flex;
         justify-content: center;
         gap: 1.5rem;
-        margin-top: 1.5rem;
+        margin-top: 2rem;
+        position: relative;
       }
 
-      .social-links a {
-        color: var(--primary);
-        font-size: 1.6rem;
-        transition: all 0.3s ease;
-        background: white;
-        padding: 0.5rem;
-        border-radius: 50%;
+      .social-link {
         width: 40px;
         height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none; /* Remove underline */
       }
 
-      .social-links a:hover {
-        color: var(--accent);
-        transform: translateY(-3px);
+      .social-link i {
+        color: var(--secondary);
+        font-size: 1.4rem;
+        transition: all 0.3s ease;
       }
 
-      .website-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 1.5rem;
-        text-decoration: none;
-        color: var(--primary);
-        font-size: 1.2rem;
-        padding: 0.75rem;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        transition: background 0.3s ease, color 0.3s ease;
+      .social-link:hover {
+        background: var(--gradient);
+        transform: translateY(-3px) rotate(5deg);
       }
 
-      .website-link:hover {
-        background: #f0f0f0;
-        color: var(--accent);
+      .social-link::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          45deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.2) 50%,
+          transparent 60%
+        );
+        animation: matrixFlow 2s linear infinite;
       }
 
-      .website-link i {
-        margin-right: 0.5rem;
+      @keyframes matrixFlow {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(100%);
+        }
       }
 
       @media (max-width: 480px) {
-        .card-container {
-          width: 100%; /* Full width on mobile */
+        .cyber-card {
+          padding: 1.5rem;
+          min-height: auto;
         }
-        .business-card {
-          border-radius: 0 0 24px 24px; /* Apply border radius only to the bottom corners */
+
+        .profile-name {
+          font-size: 1.8rem;
         }
-        .hero-section {
-          padding: 1.5rem 1.5rem 3rem;
+
+        .services-grid {
+          grid-template-columns: 1fr;
         }
-        .profile-section {
-          flex-direction: column;
-          text-align: center;
+
+        .contact-item {
+          padding: 0.8rem;
         }
-        .profile-img {
-          width: 100px;
-          height: 100px;
-          transform: translateY(30px) translateX(0);
+      }
+
+      @keyframes scan {
+        from {
+          transform: translateY(-100%);
         }
-        .services {
-          padding: 0 1.5rem;
+        to {
+          transform: translateY(100%);
         }
       }
     </style>
   </head>
   <body>
-    <div class="card-container">
-      <main class="business-card">
-        <section class="hero-section">
-          <div class="hero-wave"></div>
-          <div class="logo-container">
-            <img src="images/logo.png" alt="Godiva Logo" class="logo" />
-          </div>
-          <p class="hero-tagline">
-            Innovating Digital Solutions for Your Business
-          </p>
-          <div class="profile-section">
-            <img src="images/profile.jpg" alt="Aanand" class="profile-img" />
-            <div class="profile-info">
-              <h1>Aanand</h1>
-              <p class="title">Founder & CEO</p>
+    <div class="cyber-card">
+      <!-- <div class="cyber-glow"></div> -->
+      <div class="pattern"></div>
+
+      <div class="profile-header">
+        <img src="images/logo.png" alt="Godiva Tech" class="logo" />
+        <img src="images/profile.jpg" alt="Aanand" class="profile-img" />
+        <div class="profile-info">
+          <h1 class="profile-name">AANAND</h1>
+          <p class="profile-title">FOUNDER & CEO</p>
+        </div>
+      </div>
+
+      <section class="services">
+        <h2 class="section-title">
+          <i class="ri-rocket-2-line"></i> Our Expertise
+        </h2>
+        <div class="services-grid">
+          <a href="https://godivatech.com/services/" target="_blank">
+            <div class="service">
+              <i class="ri-code-s-slash-line"></i>
+              <h3>Custom Software</h3>
             </div>
-          </div>
-        </section>
-
-        <section class="services">
-          <h2 class="section-title">
-            <i class="ri-rocket-2-line"></i> Our Expertise
-          </h2>
-          <div class="services-grid">
-            <a href="https://godivatech.com/services/" target="_blank">
-              <div class="service">
-                <i class="ri-code-s-slash-line"></i>
-                <h3>Custom Software</h3>
-              </div>
-            </a>
-            <a href="https://godivatech.com/services/" target="_blank">
-              <div class="service">
-                <i class="ri-smartphone-line"></i>
-                <h3>Mobile Apps</h3>
-              </div>
-            </a>
-            <a href="https://godivatech.com/services/" target="_blank">
-              <div class="service">
-                <i class="ri-line-chart-line"></i>
-                <h3>Digital Strategy</h3>
-              </div>
-            </a>
-            <a href="https://godivatech.com/services/" target="_blank">
-              <div class="service">
-                <i class="ri-global-line"></i>
-                <h3>Web Solutions</h3>
-              </div>
-            </a>
-          </div>
-        </section>
-
-        <section class="contact-section">
-          <div class="contact-info">
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=261+Vaigai+Main+Road,+Madurai,+India"
-              target="_blank"
-              class="contact-item"
-            >
-              <i class="ri-map-pin-line"></i>
-              <p>261 Vaigai Main Road, Madurai, India</p>
-            </a>
-            <a href="tel:+919790612280" class="contact-item">
-              <i class="ri-phone-line"></i>
-              <p>+91 97906 12280</p>
-            </a>
-          </div>
-          <div class="social-links">
-            <a href="#"><i class="ri-linkedin-box-fill"></i></a>
-            <a href="#"><i class="ri-twitter-x-fill"></i></a>
-            <a href="#"><i class="ri-instagram-fill"></i></a>
-            <a href="#"><i class="ri-facebook-box-fill"></i></a>
-          </div>
-          <a
-            href="https://www.godivatech.com"
-            target="_blank"
-            class="website-link"
-          >
-            <i class="ri-global-line"></i> Visit our Website
           </a>
-        </section>
-      </main>
+          <a href="https://godivatech.com/services/" target="_blank">
+            <div class="service">
+              <i class="ri-smartphone-line"></i>
+              <h3>Mobile Apps</h3>
+            </div>
+          </a>
+          <a href="https://godivatech.com/services/" target="_blank">
+            <div class="service">
+              <i class="ri-line-chart-line"></i>
+              <h3>Digital Strategy</h3>
+            </div>
+          </a>
+          <a href="https://godivatech.com/services/" target="_blank">
+            <div class="service">
+              <i class="ri-global-line"></i>
+              <h3>Web Solutions</h3>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <div class="cyber-contact">
+        <div class="contact-beam"></div>
+        <a href="tel:+919790612280" class="contact-item">
+          <i class="ri-smartphone-line contact-icon"></i>
+          <p class="contact-info">+91 97906 12280</p>
+        </a>
+        <a href="mailto:connect@godivatech.com" class="contact-item">
+          <i class="ri-mail-send-line contact-icon"></i>
+          <p class="contact-info">connect@godivatech.com</p>
+        </a>
+        <div class="contact-item">
+          <i class="ri-map-pin-line contact-icon"></i>
+          <p class="contact-info">Madurai, India</p>
+        </div>
+      </div>
+
+      <div class="social-matrix">
+        <a href="https://www.facebook.com" target="_blank" class="social-link">
+          <i class="ri-facebook-box-fill"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" class="social-link">
+          <i class="ri-instagram-line"></i>
+        </a>
+        <a href="https://godivatech.com" target="_blank" class="social-link">
+          <i class="ri-global-line"></i>
+        </a>
+      </div>
     </div>
   </body>
 </html>
