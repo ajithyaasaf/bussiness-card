@@ -269,6 +269,30 @@
         transform: translateY(-3px);
       }
 
+      .website-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1.5rem;
+        text-decoration: none;
+        color: var(--primary);
+        font-size: 1.2rem;
+        padding: 0.75rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      .website-link:hover {
+        background: #f0f0f0;
+        color: var(--accent);
+      }
+
+      .website-link i {
+        margin-right: 0.5rem;
+      }
+
       @media (max-width: 480px) {
         .card-container {
           width: 100%; /* Full width on mobile */
@@ -367,6 +391,13 @@
             <a href="#"><i class="ri-instagram-fill"></i></a>
             <a href="#"><i class="ri-facebook-box-fill"></i></a>
           </div>
+          <a
+            href="https://www.godivatech.com"
+            target="_blank"
+            class="website-link"
+          >
+            <i class="ri-global-line"></i> Visit our Website
+          </a>
         </section>
       </main>
     </div>
