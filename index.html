@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Godiva Tech - Next-Gen Digital Card</title>
+    <title>Godiva Tech - Professional Creative Card</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css"
@@ -14,12 +14,11 @@
       :root {
         --primary: #0874cc;
         --secondary: #2c3e50;
-        --accent: #ff6b6b;
+        --accent-orange: #f39c12;
+        --accent-blue: #3498db;
         --light: #f8f9ff;
         --dark: #1a1a1a;
         --gradient: linear-gradient(135deg, var(--primary), #065a9c);
-        --service-bg: #e3f2fd;
-        --contact-bg: #e3f2fd;
       }
 
       * {
@@ -30,134 +29,243 @@
       }
 
       body {
-        background: #f8f9ff;
+        background: var(--light);
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         min-width: 100vw;
-        perspective: 1000px;
-        margin: 0;
+        background-image: linear-gradient(
+          to bottom right,
+          rgba(8, 116, 204, 0.1),
+          rgba(243, 156, 18, 0.1)
+        );
       }
 
       .cyber-card {
         width: 100%;
-        max-width: 400px;
-        background: rgba(255, 255, 255, 0.98);
+        max-width: 900px;
+        height: 450px;
+        position: relative;
         padding: 2rem;
-        position: relative;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(8, 116, 204, 0.15),
+          0 0 0 2px var(--accent-blue), inset 0 0 20px rgba(52, 152, 219, 0.1);
+        display: flex;
         overflow: hidden;
-        transform-style: preserve-3d;
-        box-shadow: 0 0 50px rgba(8, 116, 204, 0.3);
-        border: 1px solid rgba(128, 128, 128, 0.1);
-        backdrop-filter: blur(10px);
-        min-height: 700px;
-      }
-
-      .cyber-glow {
-        position: absolute;
-        width: 200%;
-        height: 200%;
-        background: var(--gradient);
-        opacity: 0.1;
-        filter: blur(80px);
-        animation: glowRotate 12s linear infinite;
-        z-index: -1;
-      }
-
-      .hologram-effect {
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        background: repeating-conic-gradient(
-          rgba(8, 116, 204, 0.1) 0% 25%,
-          transparent 0% 50%
-        );
-        background-size: 20px 20px;
-        transform: translate(-30%, -30%) rotate(45deg);
-        animation: hologram 4s linear infinite;
-        opacity: 0.3;
-        pointer-events: none;
-      }
-
-      .pattern {
-        position: absolute;
-        background: rgba(
-          8,
-          116,
-          204
-        ); /* Increased opacity for more visibility */
-        width: 100%;
-        height: 100px;
-        top: 0;
-        left: 0;
-        clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
-      }
-
-      .profile-header {
-        text-align: center;
-        position: relative;
-        margin-bottom: 2rem;
-      }
-
-      .logo {
-        width: 150px;
-        margin-bottom: 1.5rem;
-      }
-
-      .profile-img {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        border: 0.5px solid var(--primary);
-        padding: 3px;
-        background: var(--gradient);
-        margin: 0 auto 1rem;
-        object-fit: cover;
+        background: linear-gradient(145deg, #ffffff, #f7faff);
         transition: transform 0.3s ease;
       }
 
-      .profile-img:hover {
-        transform: rotate(5deg) scale(1.05);
+      .cyber-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(8, 116, 204, 0.25),
+          0 0 0 2px var(--accent-blue), inset 0 0 20px rgba(52, 152, 219, 0.1);
+      }
+
+      .wave-pattern {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 120px;
+        background: var(--gradient);
+        clip-path: path("M0,80 Q250,20 500,80 T1000,80 V120 H0 Z");
+        opacity: 1.15;
+        z-index: 0;
+      }
+
+      .profile-header {
+        width: 35%;
+        padding: 1rem;
+        background: var(--secondary);
+        color: var(--light);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .profile-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+      }
+
+      .profile-circuit {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+
+      .circuit-bg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(45deg) scale(1.5);
+      }
+
+      .profile-decor {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(
+          circle,
+          var(--accent-orange) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        bottom: -100px;
+        right: -100px;
+        opacity: 0.15;
+        z-index: 0;
+      }
+
+      .logo {
+        width: 180px;
+      }
+
+      .profile-avatar {
+        position: relative;
+      }
+
+      .avatar-ring {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        background: conic-gradient(
+          var(--accent-blue) 0deg,
+          var(--accent-orange) 90deg,
+          transparent 180deg,
+          var(--primary) 360deg
+        );
+        border-radius: 50%;
+        padding: 6px;
+        transition: transform 0.3s ease;
+      }
+
+      .avatar-ring:hover {
+        transform: rotate(45deg);
+      }
+
+      .profile-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid var(--secondary);
+        object-fit: cover;
+      }
+
+      .status-dot {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--accent-orange);
+        border-radius: 50%;
+        bottom: 5px;
+        right: 5px;
+        border: 2px solid var(--light);
+        animation: pulse 2s infinite;
       }
 
       .profile-info {
-        margin-bottom: 2rem;
+        text-align: center;
+        padding-bottom: 1.5rem;
+      }
+
+      .name-container {
+        position: relative;
+        margin-bottom: 0.5rem;
       }
 
       .profile-name {
-        color: var(--secondary);
-        font-size: 2.2rem;
-        margin-bottom: 0.25rem;
-        background: var(--gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--light);
+      }
+
+      .name-underline {
+        width: 50%;
+        height: 3px;
+        background: var(--accent-blue);
+        margin: 0.3rem auto;
+        border-radius: 2px;
       }
 
       .profile-title {
-        color: var(--accent);
-        font-size: 1.1rem;
-        letter-spacing: 2px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--accent-orange);
+        letter-spacing: 1px;
       }
 
-      .services {
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+      }
+
+      .content-area {
+        width: 65%;
         padding: 2rem;
-        margin-bottom: 2rem;
-        background: var(--service-bg);
-        border-radius: 16px;
-        z-index: 2;
+        display: flex;
+        flex-direction: column;
         position: relative;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 12px rgba(8, 116, 204, 0.2);
+        z-index: 1;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .tab {
+        padding: 0.5rem 1rem;
+        background: var(--accent-blue);
+        color: var(--light);
+        font-weight: 700;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .tab:hover,
+      .tab.active {
+        background: var(--primary);
+        transform: scale(1.1);
+      }
+
+      .section {
+        display: none;
+      }
+
+      .section.active {
+        display: block;
       }
 
       .section-title {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        font-weight: 700;
         color: var(--secondary);
-        margin-bottom: 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
+        margin-bottom: 1rem;
       }
 
       .services-grid {
@@ -166,250 +274,279 @@
         gap: 1rem;
       }
 
-      .services-grid a {
-        text-decoration: none;
-      }
-
       .service {
-        background: rgba(255, 255, 255, 0.8);
-        padding: 1.25rem;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(8, 116, 204, 0.08);
-        height: 120px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.3s ease;
+        background: var(--gradient);
+        padding: 1.2rem;
+        border-radius: 10px;
         text-align: center;
+        color: var(--light);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
       }
 
       .service:hover {
         transform: translateY(-5px);
-      }
-
-      .service i {
-        font-size: 2rem;
-        color: var(--primary);
-        margin-bottom: 0.75rem;
+        box-shadow: 0 8px 20px rgba(8, 116, 204, 0.3);
       }
 
       .service h3 {
         font-size: 1rem;
-        color: var(--secondary);
-        text-align: center;
+        font-weight: 700;
       }
 
-      .cyber-contact {
-        padding: 2rem;
-        background: var(--contact-bg);
-        border-radius: 16px;
-        display: grid;
+      .contact-list {
+        display: flex;
+        flex-direction: column;
         gap: 1rem;
-        position: relative;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 12px rgba(8, 116, 204, 0.2);
-      }
-
-      .contact-beam {
-        position: absolute;
-        height: 2px;
-        background: var(--gradient);
-        width: 100%;
-        filter: blur(1px);
-        top: -20px;
       }
 
       .contact-item {
         display: flex;
         align-items: center;
         gap: 1rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.05);
+        padding: 0.8rem;
+        background: rgba(8, 116, 204, 0.1);
         border-radius: 8px;
+        text-decoration: none;
         transition: all 0.3s ease;
-        border: 1px solid transparent;
-        text-decoration: none; /* Remove underline */
       }
 
       .contact-item:hover {
-        border-color: var(--primary);
+        background: var(--accent-orange);
+        color: var(--light);
         transform: translateX(10px);
-        background: rgba(8, 116, 204, 0.1);
       }
 
       .contact-icon {
         font-size: 1.5rem;
-        background: var(--gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: var(--primary);
+      }
+
+      .contact-item:hover .contact-icon {
+        color: var(--light);
       }
 
       .contact-info {
-        color: var(--secondary);
         font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--secondary);
+      }
+
+      .contact-item:hover .contact-info {
+        color: var(--light);
       }
 
       .social-matrix {
         display: flex;
-        justify-content: center;
         gap: 1.5rem;
-        margin-top: 2rem;
-        position: relative;
+        justify-content: center;
       }
 
       .social-link {
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: var(--primary);
         display: grid;
         place-items: center;
-        background: rgba(255, 255, 255, 0.1);
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        text-decoration: none; /* Remove underline */
+        transition: all 0.3s ease;
+        text-decoration: none;
       }
 
       .social-link i {
-        color: var(--secondary);
-        font-size: 1.4rem;
-        transition: all 0.3s ease;
+        font-size: 1.5rem;
+        color: var(--light);
       }
 
       .social-link:hover {
-        background: var(--gradient);
-        transform: translateY(-3px) rotate(5deg);
+        background: var(--accent-orange);
+        transform: scale(1.2);
       }
 
-      .social-link::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          45deg,
-          transparent 40%,
-          rgba(255, 255, 255, 0.2) 50%,
-          transparent 60%
-        );
-        animation: matrixFlow 2s linear infinite;
-      }
-
-      @keyframes matrixFlow {
-        from {
-          transform: translateX(-100%);
+      @media (max-width: 768px) {
+        .cyber-card {
+          flex-direction: column;
+          height: auto;
+          max-width: 600px;
         }
-        to {
-          transform: translateX(100%);
+        .profile-header,
+        .content-area {
+          width: 100%;
+        }
+        .profile-header {
+          padding: 1rem;
+        }
+        .avatar-ring {
+          width: 100px;
+          height: 100px;
+        }
+        .logo {
+          width: 60px;
+        }
+        .profile-name {
+          font-size: 1.5rem;
         }
       }
 
       @media (max-width: 480px) {
         .cyber-card {
-          padding: 1.5rem;
-          min-height: auto;
+          padding: 1rem;
+          max-width: 350px;
         }
-
-        .profile-name {
-          font-size: 1.8rem;
-        }
-
         .services-grid {
           grid-template-columns: 1fr;
         }
-
-        .contact-item {
-          padding: 0.8rem;
+        .profile-name {
+          font-size: 1.5rem;
         }
-      }
-
-      @keyframes scan {
-        from {
-          transform: translateY(-100%);
-        }
-        to {
-          transform: translateY(100%);
+        .tabs {
+          flex-wrap: wrap;
         }
       }
     </style>
   </head>
   <body>
     <div class="cyber-card">
-      <!-- <div class="cyber-glow"></div> -->
-      <div class="pattern"></div>
+      <div class="wave-pattern"></div>
 
       <div class="profile-header">
-        <img src="images/logo.png" alt="Godiva Tech" class="logo" />
-        <img src="images/profile.jpg" alt="Anand" class="profile-img" />
-        <div class="profile-info">
-          <h1 class="profile-name">ANAND</h1>
-          <p class="profile-title">FOUNDER & CEO</p>
+        <div class="profile-decor"></div>
+        <div class="profile-container">
+          <div class="profile-circuit">
+            <svg viewBox="0 0 100 100" class="circuit-bg">
+              <path
+                d="M10 50 H30 V30 H50 V50 H70 V30 H90"
+                fill="none"
+                stroke="var(--accent-blue)"
+                stroke-width="2"
+                opacity="0.2"
+              />
+            </svg>
+          </div>
+          <div class="logo-container">
+            <img src="images/logo2.png" alt="Godiva Tech" class="logo" />
+          </div>
+          <div class="profile-avatar">
+            <div class="avatar-ring">
+              <img src="images/profile.jpg" alt="Anand" class="profile-img" />
+              <div class="status-dot"></div>
+            </div>
+          </div>
+          <div class="profile-info">
+            <div class="name-container">
+              <h1 class="profile-name">ANAND</h1>
+              <div class="name-underline"></div>
+            </div>
+            <p class="profile-title">FOUNDER & CEO</p>
+          </div>
         </div>
       </div>
 
-      <section class="services">
-        <h2 class="section-title">
-          <i class="ri-rocket-2-line"></i> Our Expertise
-        </h2>
-        <div class="services-grid">
-          <a href="https://godivatech.com/services/" target="_blank">
-            <div class="service">
-              <i class="ri-code-s-slash-line"></i>
-              <h3>Custom Software</h3>
-            </div>
-          </a>
-          <a href="https://godivatech.com/services/" target="_blank">
-            <div class="service">
-              <i class="ri-smartphone-line"></i>
+      <div class="content-area">
+        <div class="tabs">
+          <div class="tab active" data-section="services">Services</div>
+          <div class="tab" data-section="contact">Contact</div>
+          <div class="tab" data-section="social">Social</div>
+        </div>
+
+        <div class="section services active" id="services">
+          <h2 class="section-title">Our Expertise</h2>
+          <div class="services-grid">
+            <a
+              href="https://godivatech.com/services/"
+              target="_blank"
+              class="service"
+            >
+              <h3>Software Solutions</h3>
+            </a>
+            <a
+              href="https://godivatech.com/services/"
+              target="_blank"
+              class="service"
+            >
               <h3>Mobile Apps</h3>
-            </div>
-          </a>
-          <a href="https://godivatech.com/services/" target="_blank">
-            <div class="service">
-              <i class="ri-line-chart-line"></i>
-              <h3>Digital Strategy</h3>
-            </div>
-          </a>
-          <a href="https://godivatech.com/services/" target="_blank">
-            <div class="service">
-              <i class="ri-global-line"></i>
-              <h3>Web Solutions</h3>
-            </div>
-          </a>
+            </a>
+            <a
+              href="https://godivatech.com/services/"
+              target="_blank"
+              class="service"
+            >
+              <h3>Digital Marketing</h3>
+            </a>
+            <a
+              href="https://godivatech.com/services/"
+              target="_blank"
+              class="service"
+            >
+              <h3>Web Applications</h3>
+            </a>
+          </div>
         </div>
-      </section>
 
-      <div class="cyber-contact">
-        <div class="contact-beam"></div>
-        <a href="tel:+919790612280" class="contact-item">
-          <i class="ri-smartphone-line contact-icon"></i>
-          <p class="contact-info">+91 97906 12280</p>
-        </a>
-        <a href="mailto:connect@godivatech.com" class="contact-item">
-          <i class="ri-mail-send-line contact-icon"></i>
-          <p class="contact-info">info@godivatech.com</p>
-        </a>
-        <a
-          href="https://www.google.com/maps/search/?api=1&query=Iyerbungalow,Madurai"
-          target="_blank"
-          class="contact-item"
-        >
-          <i class="ri-map-pin-line contact-icon"></i>
-          <p class="contact-info">Iyerbungalow,Madurai</p>
-        </a>
-      </div>
+        <div class="section contact" id="contact">
+          <h2 class="section-title">Get in Touch</h2>
+          <div class="contact-list">
+            <a href="tel:+919790612280" class="contact-item">
+              <i class="ri-smartphone-line contact-icon"></i>
+              <p class="contact-info">+91 97906 12280</p>
+            </a>
+            <a href="mailto:connect@godivatech.com" class="contact-item">
+              <i class="ri-mail-send-line contact-icon"></i>
+              <p class="contact-info">info@godivatech.com</p>
+            </a>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Iyerbungalow,Madurai"
+              target="_blank"
+              class="contact-item"
+            >
+              <i class="ri-map-pin-line contact-icon"></i>
+              <p class="contact-info">Iyerbungalow, Madurai</p>
+            </a>
+          </div>
+        </div>
 
-      <div class="social-matrix">
-        <a href="https://www.facebook.com" target="_blank" class="social-link">
-          <i class="ri-facebook-box-fill"></i>
-        </a>
-        <a href="https://www.instagram.com" target="_blank" class="social-link">
-          <i class="ri-instagram-line"></i>
-        </a>
-        <a href="https://godivatech.com" target="_blank" class="social-link">
-          <i class="ri-global-line"></i>
-        </a>
+        <div class="section social" id="social">
+          <h2 class="section-title">Connect with Us</h2>
+          <div class="social-matrix">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              class="social-link"
+            >
+              <i class="ri-facebook-box-fill"></i>
+            </a>
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              class="social-link"
+            >
+              <i class="ri-instagram-line"></i>
+            </a>
+            <a
+              href="https://godivatech.com"
+              target="_blank"
+              class="social-link"
+            >
+              <i class="ri-global-line"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
+
+    <script>
+      const tabs = document.querySelectorAll(".tab");
+      const sections = document.querySelectorAll(".section");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const sectionId = tab.getAttribute("data-section");
+          tabs.forEach((t) => t.classList.remove("active"));
+          sections.forEach((s) => s.classList.remove("active"));
+          tab.classList.add("active");
+          document.getElementById(sectionId).classList.add("active");
+        });
+      });
+    </script>
   </body>
 </html>
